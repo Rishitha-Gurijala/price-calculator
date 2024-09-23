@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 const url = process.env.MONGO_URL;
-const dbName = 'flitzyDB';
+const dbName = process.env.DB_NAME;
 let db;
 
 MongoClient.connect(url).then(client => {
