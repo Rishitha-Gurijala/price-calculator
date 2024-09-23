@@ -1,23 +1,23 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+let express = require('express');
+const MongoClient = require('mongodb').MongoClient;
+let app = express();
 const dotenv = require('dotenv');
-const { route } = require("./routes/userRoute.js");
 
-const app = express();
-
-
-app.use(bodyParser.json())
 dotenv.config();
 const PORT = process.env.PORT || 3001;
-const MONGOURL = process.env.MONGO_URL
-mongoose.connect(MONGOURL).then(() => {
-    console.log("Database connected succeessfully");
-    app.listen(PORT, () => {
-        console.log(`Server running at port : ${PORT}`)
-    })
-}).catch((error) => {
-    console.log("Error::", error);
-})
+const url = process.env.MONGO_URL;
+const dbName = 'flitzyDB';
+let db;
 
-app.use("/api/user", route);
+MongoClient.connect(url).then(client => {
+    console.log("Connected successfully to server");
+    db = client.db(dbName);
+});
+
+app.get("/user/create", async function (req, res, next) {
+    var collection = "users_details";
+    let x = await db.collection(collection).find({}).toArray();
+    console.log('hbj');
+});
+app.listen(PORT);
+console.log("Listening on port 3000");
