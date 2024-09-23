@@ -1,23 +1,17 @@
-const { User } = require("../model/userModel.js");
+const { mongoConnect } = require("../mongoConnect.js");
 
-async function create(req,res){
+async function create(req, res) {
     try {
-
-        let userExist = await User.findOne({"age": "19"});
-        if(userExist) {
-            return res.status(400).json({message: "User exists"})
+        var collection = "users_details";
+        let db = await mongoConnect();
+        let userExist = await db.collection(collection).findOne({age:"24"});
+        if (userExist) {
+            return res.status(400).json({ message: "User exists",
+                data : userExist
+             })
         }
-    } catch(err) {
-        res.status(500).json({error : "Internal Server Error."})
+    } catch (err) {
+        res.status(500).json({ error: "Internal Server Error." })
     }
 }
-
-async function fetch(req,res){
-    try {
-        return res.json("Hello World")
-    } catch(err) {
-        res.status(500).json({error : "Internal Server Error.", err})
-    }
-}
-
-module.exports = { fetch, create };
+module.exports = { create };
