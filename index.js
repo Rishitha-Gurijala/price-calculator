@@ -19,5 +19,6 @@ app.get("/user/create", async function (req, res, next) {
     let x = await db.collection(collection).find({}).toArray();
     console.log('hbj');
 });
+
 app.listen(PORT);
 console.log("Listening on port 3000");
