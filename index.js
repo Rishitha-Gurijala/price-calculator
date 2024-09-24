@@ -4,6 +4,11 @@ const {
     getRoutes
 } = require("./routes/routes.js");
 
+// let {createClient} = require('redis');
+// global.client = createClient();
+// client.on('error', err => console.log('Redis Client Error', err));
+
+
 const path = require("path");
 const dotenv = require('dotenv');
 dotenv.config();

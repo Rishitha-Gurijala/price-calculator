@@ -1,15 +1,13 @@
 
 const {
     create,
-    calculateDistance,
-    calculatePrice
+    calculateDistance
 } = require("../controller/userController.js");
 
 
 function getRoutes() {
-    app.get("/user/distance", calculateDistance);
-    app.get("/user/create", create);
-    app.post("/user/travelPrice", calculatePrice);
+    app.get("/user/distance/:userId/:lat1/:lng1/:lat2/:lng2", calculateDistance);
+    app.get(`/user/create/:userId`, create);
 }
 
 
