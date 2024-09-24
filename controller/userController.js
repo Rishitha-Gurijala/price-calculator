@@ -14,4 +14,9 @@ async function create(req, res) {
         res.status(500).json({ error: "Internal Server Error." })
     }
 }
-module.exports = { create };
+
+function calculateDistance(req,res) {
+    res.render("index")
+}
+
+module.exports = { create, calculateDistance };
