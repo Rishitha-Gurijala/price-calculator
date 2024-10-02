@@ -52,6 +52,7 @@ async function calculatePrice(req, res) {
 
     let price = calculatePriceFromDistance(distance, transportPerCity);
 
+
     return res.status(200).send(price);
 }
 
