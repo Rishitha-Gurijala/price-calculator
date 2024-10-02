@@ -52,9 +52,7 @@ async function calculatePrice(req, res) {
 
     let price = calculatePriceFromDistance(distance, transportPerCity);
 
-    return res.status(200).json({
-        message: `Price in Rs ::: ${price}`
-    });
+    return res.status(200).send(price);
 }
 
 function calculatePriceFromDistance(distance, transportPerCity) {
@@ -66,6 +64,7 @@ function calculatePriceFromDistance(distance, transportPerCity) {
             return transp.price;
         }
     }
+    return '10';
 
 }
 
