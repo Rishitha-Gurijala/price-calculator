@@ -75,7 +75,7 @@ async function calculatePrice(req, res) {
 
 function getProductsWoo(req, response) {
     WooCommerce.get('products', function (err, data, res) {
-        response.json(JSON.parse(res));
+        return response.json(JSON.parse(res));
     })
 }
 
